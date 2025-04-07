@@ -4,17 +4,15 @@ from sqlalchemy import orm
 from .db_session import SqlAlchemyBase
 
 
-class News(SqlAlchemyBase):
+class Jobs(SqlAlchemyBase):
     __tablename__ = 'jobs'
-
     id = sqlalchemy.Column(sqlalchemy.Integer,
                            primary_key=True, autoincrement=True)
-    title = sqlalchemy.Column(sqlalchemy.String, nullable=True)
-    content = sqlalchemy.Column(sqlalchemy.String, nullable=True)
-    created_date = sqlalchemy.Column(sqlalchemy.DateTime,
-                                     default=datetime.datetime.now)
-    is_private = sqlalchemy.Column(sqlalchemy.Boolean, default=True)
+    team_leader = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey("users.id"), autoincrement=True)
+    job = sqlalchemy.Column(sqlalchemy.String, nullable=True)
+    work_size = sqlalchemy.Column(sqlalchemy.Integer, autoincrement=True)
+    collaborators = sqlalchemy.Column(sqlalchemy.String, nullable=True)
+    start_date = sqlalchemy.Column(sqlalchemy.DateTime)
+    end_date = sqlalchemy.Column(sqlalchemy.DateTime)
+    is_finished = sqlalchemy.Column(sqlalchemy.Boolean, nullable=True)
 
-    user_id = sqlalchemy.Column(sqlalchemy.Integer,
-                                sqlalchemy.ForeignKey("users.id"))
-    user = orm.relationship('User')
