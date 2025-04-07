@@ -1,9 +1,8 @@
 from datetime import datetime
 
+from capitan.data import db_session
 from capitan.data.jobs import Jobs
-from class_work.data import db_session
 from flask import Flask
-from class_work.data.users import User
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
